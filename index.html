@@ -9,9 +9,40 @@
 <body>
     <div id="root"></div>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react@16/umd/react-dom.development.js"></script>
-    <script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Menu ({title, recipes}) {
+            console.log("receipes", recipes)
+            return (
+                <article>
+                    <header>
+                        <h1>{title}</h1>
+                    </header>
+                    <div className="recipes">
+                        {recipes.map((recipe, id) => (
+                            <Recipe key={id} {...recipe} />
+                        ))}
+                    </div>
+                </article>
+            )
+        }
         
+        ReactDOM.render(
+            <Menu recipes={data} title="Delicius Recipes" />,
+            document.getElementById("root")
+        )
+
+        function Cat({ name }) {
+            return (
+                <>
+                    <h1>The cat's name is {name}</h1>
+                    <p>He's good.</p>    
+                </>
+            )
+        }
+
+        ReactDOM.render(<Cat name="Jungle" />, document.getElementById("root"))
     </script>
 </body>
 </html>
